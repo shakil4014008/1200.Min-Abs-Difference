@@ -1,36 +1,20 @@
 # 1200.Min-Abs-Difference
 
-````C#
-public class Solution {
-    public IList<IList<int>> MinimumAbsDifference(int[] arr) {
-         
-        List<IList<int>> list = new List<IList<int>>();
+````py
+
+ def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
+        arr.sort()
+        min_diff = float('inf')
+        result = []
         
-        
-        int diff = 99999;
-        Array.Sort(arr);
-        
-        for(int i=0; i<arr.Length-1; i++){
+        for i in range(1, len(arr)):
+            diff = arr[i] - arr[i - 1]
             
-             if(Math.Abs(arr[i] - arr[i+1]) < diff){
-                 diff = Math.Abs(arr[i] - arr[i+1]);
-             } 
-        }
-        
-        for(int i=0; i<arr.Length -1; i++){
-            if(diff == Math.Abs(arr[i] - arr[i+1])) 
-            {
-                 List<int> sub = new List<int>();
-        
-                 sub.Add(arr[i]); 
-                 sub.Add(arr[i+1]);
-                 list.Add(sub);  
-            }
-             
-        }
-        
-        return list;
-        
-    }
-}
+            if diff < min_diff:
+                min_diff = diff
+                result = [[arr[i - 1], arr[i]]]
+            elif diff == min_diff:
+                result.append([arr[i - 1], arr[i]])        
+        return result
+ 
 ````
